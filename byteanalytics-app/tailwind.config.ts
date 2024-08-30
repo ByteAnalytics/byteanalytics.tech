@@ -18,7 +18,19 @@ const config = {
       },
     },
     extend: {
+      screens:{
+        'sm':"320px",
+        'lg':'1220px'
+      },
       colors: {
+        black:"#1E2833",
+        lightpurple:"#DBE2FF",
+        lemongreen:"#52C41A",
+        lightgrey:"#fafafa",
+        thickgrey:"#8C94A3",
+        blue:"#1355E9",
+        orange:"#FFAD33",
+        border2:"#E9EAF0",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

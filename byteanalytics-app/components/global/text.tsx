@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
-import { textPropType } from '../../lib/types/global';
+import { ITextPropType } from '../../lib/types/global';
 
-export const Text: React.FC<textPropType> = ({
+export const Text: React.FC<ITextPropType> = ({
   style,
   children,
   clickFunc,
   as,
-}: textPropType) => {
-  const Component: React.FC<textPropType> = ({
+}: ITextPropType) => {
+  const Component: React.FC<ITextPropType> = ({
     as,
     style,
     clickFunc,
@@ -23,7 +23,7 @@ export const Text: React.FC<textPropType> = ({
   };
   if (as) {
     return (
-      <Component style={style} clickFunc={clickFunc} as={as} children={children} />
+      <Component style={style} clickFunc={clickFunc} as={as}>{children}</Component>
     );
   } else {
     return (
