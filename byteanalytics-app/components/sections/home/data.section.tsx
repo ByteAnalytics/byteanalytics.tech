@@ -22,7 +22,7 @@ export const Data: React.FC = () => {
             decision-making.
           </Text>
         </div>
-        <div className="md:w-[45%] w-full border">
+        <div className="md:w-[45%] w-full">
           <CustomImage
             src={img}
             style={'w-full md:h-full h-[15rem]'}

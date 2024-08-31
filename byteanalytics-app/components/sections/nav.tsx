@@ -16,7 +16,7 @@ export const TopNav: React.FC = () => {
   const [showMobileSearchInput, setShowMobileSearchIput] = useState<boolean>(false);
   return (
     <header className="shadow-md" id="top">
-      <nav className="lg:block hidden w-full px-[2rem]  bg-black">
+      <nav className="lg:block hidden w-full px-[2rem] bg-black">
         <ul
           className={`flex lg:flex-row flex-col gap-4 m-auto max-w-[1440px] ${DmSans.className}`}
         >

@@ -10,7 +10,7 @@ export const ConsultationHero: React.FC = () => {
   return (
     <section>
       <MaxScreenWrapper style="relative flex lg:flex-row flex-col bg-black">
-        <div className="absolute top-0 lg:left-[1rem] left-4">
+        <div className="z-[500] h-fit absolute top-0 lg:left-[2.5rem] left-4 p-4">
           <BreadCombLayout
             routes={[
               {

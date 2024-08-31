@@ -33,7 +33,7 @@ export const ServiceHero: React.FC = () => {
           />
           <div className="flex flex-col lg:items-start items-center lg:justify-start justify-center">
             <div
-              className={`flex items-center mb-4  gap-2 bg-[#E6F0FC] border border-[#6997FF] w-fit rounded-2xl text-[#6997FF] text-xs font-[500] p-[0.4rem]`}
+              className={`flex items-center mb-4  gap-2 bg-[#374151] border border-[#6997FF] w-fit rounded-2xl text-[#6997FF] text-xs font-[500] p-[0.4rem]`}
             >
               <CustomImage src={img1} style={'w-[1rem] h-[0.9rem]'} />
               Our Offers

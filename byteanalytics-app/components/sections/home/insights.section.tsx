@@ -9,11 +9,20 @@ import timeline from '../../../public/insights/timeline.svg';
 import chart from '../../../public/insights/chart-bar-33.svg';
 import { DmSans } from '@/app/layout';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
+import blubg from '../../../public/about-us/unsplash_PGdW_bHDbpI.svg';
 
 export const Insights: React.FC = () => {
   return (
-    <section className={`bg-[#F1F5F9] py-[6rem] lg:px-[8rem] px-4`}>
-      <MaxScreenWrapper style="grid lg:grid-cols-2 grid-cols-1 lg:gap-[3.5rem] gap-4">
+    <section className={`bg-[#F1F5F9]`}>
+      <MaxScreenWrapper style="relative grid lg:grid-cols-2 grid-cols-1 lg:gap-[3.5rem] gap-4 py-[6rem] lg:px-[8rem] px-4">
+        <CustomImage
+          src={blubg}
+          style={'absolute bottom-0 left-[5%] w-[600px] h-[216px]'}
+        />
+        <CustomImage
+          src={blubg}
+          style={'absolute bottom-0 left-[25%] w-[600px] h-[216px]'}
+        />
         <div>
           <div
             className={`flex items-center mb-4  gap-2 border border-lemongreen bg-[#EAFFE0] w-fit rounded-[23.26px] text-lemongreen text-[18.69px] leading-[27.91px] font-[400] p-[0.6rem] ${DmSans.className}`}
@@ -21,7 +30,7 @@ export const Insights: React.FC = () => {
             <CustomImage src={eye} style={'w-[1.5rem] h-[1rem]'} />
             Why Byte Analytics ?
           </div>
-          <div className="flex flex-col font-[700] lg:text-[37.22px] text-[30px] gap-2 mb-4 lg:leading-[36.52px] leading-[30px]">
+          <div className="flex flex-col font-[700] lg:text-[37px] text-[30px] gap-2 mb-4 lg:leading-[36.52px] leading-[30px]">
             <Text as="h2">Get actionable insights from</Text>
             <Text as="h2">
               Big Data in <span className="text-lemongreen ">3 steps</span>
@@ -46,7 +55,7 @@ export const Insights: React.FC = () => {
             style={'w-[4rem] h-[4rem] mb-2'}
             imgStyle="object-cover"
           />
-          <div className="flex flex-col gap-4 mt-4">
+          <div className="flex flex-col justify-center gap-4 mt-4">
             {[
               {
                 img: chart,
@@ -65,7 +74,7 @@ export const Insights: React.FC = () => {
               },
             ].map((insights, index) => (
               <div
-                className="w-full bg-white flex lg:flex-row flex-col lg:items-center items-start gap-[1rem] p-4 rounded shadow"
+                className="w-full bg-white z-[500] flex lg:flex-row lg:justify-start justify-center flex-col items-center gap-[1rem] p-4 rounded shadow"
                 key={index}
               >
                 <CustomImage
@@ -75,13 +84,13 @@ export const Insights: React.FC = () => {
                 <div>
                   <Text
                     as="h3"
-                    style="font-[600] text-[19.73px] mb-2 leading-[29.6px]"
+                    style="font-[600] lg:text-start text-center text-[19.73px] mb-2 leading-[29.6px]"
                   >
                     {insights.heading}
                   </Text>
                   <Text
                     as="h3"
-                    style={`text-[18.61px] font-[400] text-[#8989A2] leading-[27.91px]`}
+                    style={`lg:text-start text-center text-[18.61px] font-[400] text-[#8989A2] leading-[27.91px]`}
                   >
                     {insights.info}
                   </Text>
