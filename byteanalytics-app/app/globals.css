@@ -76,9 +76,12 @@
 .hero-slide .swiper-pagination{
   width:fit-content !important;
 }
+.hamburger-react{
+  width:38px!important;
+}
 
 .hero-slide .swiper-pagination-bullet-active{
-  width:32px;
+  width:34px;
   border-radius:14px;
 }
 
@@ -100,7 +103,7 @@ html{
 
 @media only screen and (max-width:1279px){
   .hero-slide .swiper-pagination{
-    margin-left:45%;
+    margin-left:40%;
   }
 }
 @media only screen and (max-width:1220px){

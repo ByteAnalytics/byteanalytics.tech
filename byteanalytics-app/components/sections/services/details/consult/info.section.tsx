@@ -5,6 +5,7 @@ import { CustomImage } from '@/components/global/image';
 import img from '../../../../../public/service/Frame 1561.svg';
 import { Cohort } from '../../join-cohort.section';
 import { Button } from '@/components/ui/button';
+import { MakeEnquiryBtn } from '../make-enquiry-btn';
 
 export const ConsultInfo: React.FC = () => {
   return (
@@ -28,9 +29,7 @@ export const ConsultInfo: React.FC = () => {
             your regulatory obligations. Save time and resources, and gain
             valuable insights that drive informed decision-making.
           </Text>
-          <Button className=" h-[60px] font-[600] flex gap-4 text-[21px] text-white bg-lemongreen rounded px-[24px]">
-            Make Enquiry
-          </Button>
+          <MakeEnquiryBtn/>
         </MaxScreenWrapper>
       </div>
       <MaxScreenWrapper>

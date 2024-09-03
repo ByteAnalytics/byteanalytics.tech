@@ -1,8 +1,7 @@
 'use client';
 import { Text } from '@/components/global/text';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'iconsax-react';
+import { EnrollBtn } from '../enroll-btn';
 
 export const DataEngineringInfo: React.FC = () => {
   return (
@@ -84,9 +83,7 @@ export const DataEngineringInfo: React.FC = () => {
           cloud-based systems, ensuring they stay competitive in a data-driven
           world.
         </Text>
-        <Button className="mt-2 h-[60px] font-[600] flex gap-4 text-[21px] text-white bg-lemongreen rounded px-[36px]">
-          Enroll Now <ArrowRight size="18" color="white" />
-        </Button>
+        <EnrollBtn/>
       </MaxScreenWrapper>
     </section>
   );

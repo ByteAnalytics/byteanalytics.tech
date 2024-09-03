@@ -1,6 +1,12 @@
 import * as z from 'zod';
 
 export const ContactUsFormSchema = z.object({
+  inquirytype: z.string({
+    required_error: 'Inquiry field is required.',
+  }),
+  organization: z.string({
+    required_error: 'Organization field is required.',
+  }),
   email: z.string({
     required_error: 'email field is required.',
   }),

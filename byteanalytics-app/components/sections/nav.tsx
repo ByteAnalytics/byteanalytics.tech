@@ -15,7 +15,7 @@ export const TopNav: React.FC = () => {
   const currentpath = usePathname();
   const [showMobileSearchInput, setShowMobileSearchIput] = useState<boolean>(false);
   return (
-    <header className="shadow-md" id="top">
+    <header className="shadow-md fixed top-0 left-0 right-0 z-[1000] bg-white" id="top">
       <nav className="lg:block hidden w-full px-[2rem] bg-black">
         <ul
           className={`flex lg:flex-row flex-col gap-4 m-auto max-w-[1440px] ${DmSans.className}`}

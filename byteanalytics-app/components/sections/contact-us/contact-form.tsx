@@ -11,7 +11,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { ContactUsFormSchema } from '../../../lib/schema/contact-us';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
@@ -21,6 +27,20 @@ import { toast } from 'sonner';
 
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const inputStyle = 'rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC]';
+  const messageInputStyle =
+    'rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC] md:my-[42.67px] my-[30px]';
+  const formGridStyle =
+    'grid md:grid-cols-2 grid-cols-1 md:gap-[42.67px] gap-[30px] md:mb-[42.67px] mb-[30px]';
+  const enquiryTypeList = [
+    'General',
+    'Training',
+    'Technical',
+    'Collaboration',
+    'Feedbacks',
+    'Payments',
+    'Others',
+  ];
   const form = useForm<z.infer<typeof ContactUsFormSchema>>({
     resolver: zodResolver(ContactUsFormSchema),
     defaultValues: {
@@ -29,11 +49,21 @@ export const ContactForm = () => {
       lastname: '',
       phone: '',
       message: '',
+      inquirytype: '',
+      organization: '',
     },
   });
 
   async function onSubmit(values: z.infer<typeof ContactUsFormSchema>) {
-    const { email, firstname, lastname, phone, message } = values;
+    const {
+      email,
+      firstname,
+      lastname,
+      phone,
+      message,
+      inquirytype,
+      organization,
+    } = values;
     setIsLoading(true);
     const data = {
       service_id: process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
@@ -45,20 +75,24 @@ export const ContactForm = () => {
         message: message,
         firstname: firstname,
         lastname: lastname,
+        inquirytype: `${inquirytype} Inquiry`,
+        organization: organization,
         to_name: 'Byte Analytics',
       },
     };
     const sendData = async () => {
+      const apiUrl = 'https://api.emailjs.com/api/v1.0/email/send';
+      const successMessage =
+        'Thank you for reaching out! Your message has been successfully sumbitted.';
+      const ErrorMessage = `We're sorry, but your message could'nt be sent. Please refresh page and try again.`;
+
       try {
         setIsLoading(true);
-        const response = await axios.post(
-          'https://api.emailjs.com/api/v1.0/email/send',
-          data
-        );
-        toast.success('Message Successfully Sent!');
+        await axios.post(apiUrl, data);
+        toast.success(successMessage);
       } catch (error) {
         console.log(error);
-        toast.error('An error occured While attempting to send message.');
+        toast.error(ErrorMessage);
       } finally {
         setIsLoading(false);
       }
@@ -69,7 +103,7 @@ export const ContactForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-[42.67px] gap-[30px] md:mb-[42.67px] mb-[30px]">
+        <div className={formGridStyle}>
           <FormField
             control={form.control}
             name="firstname"
@@ -79,7 +113,7 @@ export const ContactForm = () => {
                 <FormControl>
                   <Input
                     required
-                    className="rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC]"
+                    className={inputStyle}
                     type="text"
                     placeholder="John"
                     {...field}
@@ -98,7 +132,7 @@ export const ContactForm = () => {
                 <FormControl>
                   <Input
                     required
-                    className="rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC]"
+                    className={inputStyle}
                     type="text"
                     placeholder="Doe"
                     {...field}
@@ -117,7 +151,7 @@ export const ContactForm = () => {
                 <FormControl>
                   <Input
                     required
-                    className="rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC]"
+                    className={inputStyle}
                     type="email"
                     placeholder="sample@gmail.com"
                     {...field}
@@ -136,7 +170,7 @@ export const ContactForm = () => {
                 <FormControl>
                   <Input
                     required
-                    className="rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC]"
+                    className={inputStyle}
                     type="tel"
                     placeholder="+2349089786756"
                     {...field}
@@ -146,19 +180,18 @@ export const ContactForm = () => {
               </FormItem>
             )}
           />
-        </div>
-        <FormField
+          <FormField
             control={form.control}
-            name="message"
+            name="organization"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Organization</FormLabel>
                 <FormControl>
                   <Input
                     required
-                    className="rounded-none border-b-2 border-[#8D8D8D] bg-[#E6F0FC] md:my-[42.67px] my-[30px]"
+                    className={inputStyle}
                     type="text"
-                    placeholder="write your message"
+                    placeholder="John's Company"
                     {...field}
                   />
                 </FormControl>
@@ -166,6 +199,53 @@ export const ContactForm = () => {
               </FormItem>
             )}
           />
+          <div className="relative">
+            <FormField
+              control={form.control}
+              name="inquirytype"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Enquiry Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger className={inputStyle}>
+                      <SelectValue placeholder="Please Select..." />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white p-2">
+                      {enquiryTypeList.map((content, index) => (
+                        <SelectItem value={content} key={index}>
+                          {content}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Input
+                  required
+                  className={messageInputStyle}
+                  type="text"
+                  placeholder="write your message"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div
           className="flex justify-start items-end bg-darkblue text-white rounded-md mt-8"
           style={{ marginTop: '1.5rem' }}

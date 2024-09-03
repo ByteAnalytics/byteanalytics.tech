@@ -1,8 +1,7 @@
 'use client';
 import { Text } from '@/components/global/text';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'iconsax-react';
+import { EnrollBtn } from '../enroll-btn';
 
 export const DataAnalyticstInfo: React.FC = () => {
   return (
@@ -45,9 +44,7 @@ export const DataAnalyticstInfo: React.FC = () => {
           like Power BI and SQL, ensuring that businesses receive timely,
           accurate, and actionable insights.
         </Text>
-        <Button className="mt-2 h-[60px] font-[600] flex gap-4 text-[21px] text-white bg-lemongreen rounded px-[36px]">
-          Enroll Now <ArrowRight size="18" color="white" />
-        </Button>
+        <EnrollBtn/>
       </MaxScreenWrapper>
     </section>
   );

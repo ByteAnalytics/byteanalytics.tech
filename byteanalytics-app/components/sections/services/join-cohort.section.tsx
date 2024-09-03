@@ -2,8 +2,10 @@
 import { MaxScreenWrapper } from '@/components/global/max-screen';
 import { Text } from '@/components/global/text';
 import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 export const Cohort: React.FC = () => {
+  const router = useRouter();
   return (
     <section>
       <MaxScreenWrapper style="bg-join-cohort flex flex-col justify-center items-center py-[6rem] md:px-[8rem] px-4 gap-4">
@@ -13,7 +15,9 @@ export const Cohort: React.FC = () => {
         >
           Kickstart Your Learning Journey With A Course
         </Text>
-        <Button className={`gap-[10px] px-[40px] py-[20px] h-[58px] bg-lemongreen text-white rounded text-center text-[14.44px]`}>
+        <Button
+          onClick={()=>router.push("/training")} 
+          className={`gap-[10px] px-[40px] py-[20px] h-[58px] bg-lemongreen text-white rounded text-center text-[14.44px]`}>
           Join Our Cohort
         </Button>
       </MaxScreenWrapper>

@@ -9,7 +9,7 @@ import timeline from '../../../public/insights/timeline.svg';
 import chart from '../../../public/insights/chart-bar-33.svg';
 import { DmSans } from '@/app/layout';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
-import blubg from '../../../public/about-us/unsplash_PGdW_bHDbpI.svg';
+import blubg from '../../../public/insights/Exclude.svg';
 
 export const Insights: React.FC = () => {
   return (
@@ -17,11 +17,8 @@ export const Insights: React.FC = () => {
       <MaxScreenWrapper style="relative grid lg:grid-cols-2 grid-cols-1 lg:gap-[3.5rem] gap-4 py-[6rem] lg:px-[8rem] px-4">
         <CustomImage
           src={blubg}
-          style={'absolute bottom-0 left-[5%] w-[600px] h-[216px]'}
-        />
-        <CustomImage
-          src={blubg}
-          style={'absolute bottom-0 left-[25%] w-[600px] h-[216px]'}
+          style={'absolute bottom-0 md:left-[137px] left-4 md:w-[709px] w-[90%] h-[104px]'}
+          imgStyle="object-contain"
         />
         <div>
           <div

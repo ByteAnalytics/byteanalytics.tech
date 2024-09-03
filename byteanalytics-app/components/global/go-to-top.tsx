@@ -14,7 +14,7 @@ export const GotoTop = () => {
           ? 'opacity-100 translate-x-0'
           : 'opacity-0 translate-x-[10rem]'
         }
-        p-4 text-4xl rounded-full bg-lemongreen fixed md:bottom-[22rem] bottom-10 md:right-[12rem] right-5 z-[900] select-none flex flex-col items-center border border-[#CCD0D4] text-black transition-all duration-1000 bg-[#001D48] backdrop-blur-xl cursor-pointer active:scale-75 active:duration-300
+        p-4 text-4xl rounded-full bg-lemongreen fixed md:bottom-[22rem] bottom-10 right-5 z-[900] select-none flex flex-col items-center border border-[#CCD0D4] text-black transition-all duration-1000 bg-[#001D48] backdrop-blur-xl cursor-pointer active:scale-75 active:duration-300
         `}
     >
       

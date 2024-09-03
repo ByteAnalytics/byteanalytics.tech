@@ -43,11 +43,11 @@ export const AllTrainings: React.FC = () => {
             </div>
             <CustomImage
               src={img}
-              style={'md:order-none order-first w-full md:h-full h-[17rem]'}
+              style={'md:order-none order-first w-full md:h-full h-[10rem]'}
             />
           </div>
           <div className="grid md:grid-cols-2 grid-cols-1 md:gap-12 gap-4">
-            <CustomImage src={img2} style={'w-full md:h-full h-[17rem] '} />
+            <CustomImage src={img2} style={'w-full md:h-full h-[10rem] '} />
             <div>
               <Text
                 as="h1"
@@ -95,7 +95,7 @@ export const AllTrainings: React.FC = () => {
             </div>
             <CustomImage
               src={img3}
-              style={'w-full md:h-full h-[17rem] md:order-none order-first'}
+              style={'w-full md:h-full h-[10rem] md:order-none order-first'}
             />
           </div>
         </MaxScreenWrapper>

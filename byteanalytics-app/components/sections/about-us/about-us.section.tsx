@@ -31,7 +31,7 @@ export const AboutUs: React.FC = () => {
   return (
     <section>
       <MaxScreenWrapper style="flex flex-col md:gap-[160px] gap-[80px] py-[6rem] md:px-[8rem] px-4 relative  bg-lightgrey">
-        <CustomImage src={blubg} style={'absolute top-[-4rem] left-0 w-[600px] h-[416px]'}/>
+        <CustomImage src={blubg} style={'absolute top-[-4rem] left-0 md:w-[600px] w-[90%] h-[416px]'}/>
         <div className="flex md:flex-row flex-col md:gap-12 gap-4 items-center justify-between">
           <div className="md:w-[50%] w-full">
             <Text

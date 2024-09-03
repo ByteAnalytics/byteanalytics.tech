@@ -12,7 +12,7 @@ export default function Home() {
       <Clients />
       <Insights />
       <Data />
-      <Courses />
+      {/* <Courses /> */}
       <Subscription />
     </>
   );

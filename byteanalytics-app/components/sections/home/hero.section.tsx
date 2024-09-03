@@ -22,7 +22,7 @@ export const HomeHero: React.FC = () => {
   return (
     <section className="bg-[#E6F0FC]">
       <MaxScreenWrapper style="relative flex hero-slide">
-        <div className="w-full xl:w-[60%] xl:py-[7rem] xl:ps-[7rem] md:ps-[4rem] xl:pe-0 md:pe-[4rem] py-[4rem] ps-8 pe-8 md:pe-0">
+        <div className="w-full xl:w-[60%] xl:py-[7rem] xl:ps-[7rem] md:ps-[4rem] xl:pe-0 md:pe-[4rem] py-[4rem] ps-4 pe-4 md:pe-0">
           <Swiper
             ref={swiperRef}
             slidesPerView={1}

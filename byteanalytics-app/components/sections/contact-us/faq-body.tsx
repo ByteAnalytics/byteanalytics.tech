@@ -18,7 +18,7 @@ export const FaqBody: React.FC<IFaqBodyPropType> = ({
     <div className="bg-white rounded-[15px] lg:p-[65px] md:p-[45px] p-4 cursor-pointer">
       <div className="flex md:items-center items-start justify-between gap-4">
         <div>
-          <Text as="h3" style="text-[24px] leading-[35px] font-[400]">
+          <Text as="h3" style="md:text-[24px]  text-[20px] leading-[35px] font-[400]">
             {title}
           </Text>
         </div>
@@ -33,7 +33,7 @@ export const FaqBody: React.FC<IFaqBodyPropType> = ({
       <div ref={faqRef} className="faq-ans">
         <Text
           as="h4"
-          style="text-[23px] leading-[35px] font-[700] text-lemongreen"
+          style="md:text-[23px] text-[19px] leading-[35px] font-[700] text-lemongreen"
         >
           {info}
         </Text>

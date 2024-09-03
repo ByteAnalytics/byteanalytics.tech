@@ -29,11 +29,15 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
-import { DmSans } from '@/app/layout';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
+import { toast } from 'sonner';
 
 export const Subscription: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const inputStyle =
+    'h-[85px] bg-white px-[24px] py-[16px] text-sm text-[#696984] leading-5 rounded';
+  const buttonStyle =
+    'w-[141px] h-[58px] gap-[10px] text-lemongreen bg-white py-[0.5rem] px-[1.5rem] rounded font[400] text-sm';
   const form = useForm<z.infer<typeof SubscriptionFormSchema>>({
     resolver: zodResolver(SubscriptionFormSchema),
     defaultValues: {
@@ -43,8 +47,40 @@ export const Subscription: React.FC = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof SubscriptionFormSchema>) {
+  function onSubmit(values: z.infer<typeof SubscriptionFormSchema>) {
     const { email, country, newsletter } = values;
+    var formData = new FormData();
+    const form_datas = [
+      {
+        title: 'Email',
+        value: email,
+      },
+      {
+        title: 'Country',
+        value: country,
+      },
+      {
+        title: 'NewsLetter',
+        value: newsletter,
+      },
+    ];
+    setIsLoading(true);
+    form_datas.forEach((data) => formData.append(data.title, `${data.value}`));
+    fetch(`${process.env.NEXT_PUBLIC_YOUR_GOOGLE_SCRIPT_URL}`, {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => {
+        setIsLoading(false);
+        toast.success("You've successfully subscribe to our newsletter");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
+        toast.error(
+          `We're sorry, but we couldnt complete your request. Please refresh page and try again.`
+        );
+      });
   }
   return (
     <section className="bg-[#F1F3F4] py-[5rem] md:px-[10rem] px-4">
@@ -66,7 +102,7 @@ export const Subscription: React.FC = () => {
                     <FormControl>
                       <Input
                         placeholder="Enter your email"
-                        className="h-[85px] bg-white px-[24px] py-[16px] text-sm text-[#696984] leading-5 rounded"
+                        className={inputStyle}
                         type="email"
                         required
                         {...field}
@@ -85,7 +121,7 @@ export const Subscription: React.FC = () => {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="h-[85px] bg-white px-[24px] py-[16px] text-sm text-[#696984] leading-5 rounded">
+                      <SelectTrigger className={inputStyle}>
                         <SelectValue placeholder="select type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -99,12 +135,15 @@ export const Subscription: React.FC = () => {
             </div>
             <FormField
               control={form.control}
-              name="country"
+              name="newsletter"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <div className="flex gap-2 items-start mb-8">
-                      <Checkbox {...field} />
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                       <div className="flex flex-col">
                         <Text
                           style={`text-[16px] font-[400] text-[#696984] leading-6 `}
@@ -141,19 +180,18 @@ export const Subscription: React.FC = () => {
               </span>
             </Text>
 
-            <div className="flex justify-end items-end bg-darkblue text-white rounded-md mt-12 w-fit ms-auto">
+            <div 
+              style={{marginTop:"3rem"}}
+              className="flex justify-end items-end bg-darkblue text-white rounded-md mt-12 w-fit ms-auto">
               {isLoading ? (
                 <Button
                   disabled
-                  className="w-fit text-white bg-darkblue py-[0.5rem] px-[1.5rem] rounded font[400]"
+                  className="w-[141px] h-[58px] gap-[10px] text-lemongreen bg-white py-[0.5rem] px-[1.5rem] rounded font[400] text-sm "
                 >
                   <ReloadIcon className="mr-2 h-4 w-4 animate-spin text-lemongreen" />
                 </Button>
               ) : (
-                <Button
-                  type="submit"
-                  className={`w-[141px] h-[58px] gap-[10px] text-lemongreen bg-white py-[0.5rem] px-[1.5rem] rounded font[400] text-sm `}
-                >
+                <Button type="submit" className={buttonStyle}>
                   Sign Up
                 </Button>
               )}
