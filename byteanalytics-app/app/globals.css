@@ -80,6 +80,10 @@
   width:38px!important;
 }
 
+.freemode .swiper-wrapper{
+    transition-timing-function: linear;
+}
+
 .hero-slide .swiper-pagination-bullet-active{
   width:34px;
   border-radius:14px;

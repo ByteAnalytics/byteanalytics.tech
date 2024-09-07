@@ -31,6 +31,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
 import { toast } from 'sonner';
+import { FormInputField } from '@/components/ui/custom-ui/form-field';
 
 export const Subscription: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,41 +48,34 @@ export const Subscription: React.FC = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof SubscriptionFormSchema>) {
+  async function onSubmit(values: z.infer<typeof SubscriptionFormSchema>) {
     const { email, country, newsletter } = values;
-    var formData = new FormData();
-    const form_datas = [
-      {
-        title: 'Email',
-        value: email,
-      },
-      {
-        title: 'Country',
-        value: country,
-      },
-      {
-        title: 'NewsLetter',
-        value: newsletter,
-      },
-    ];
+    const errorMessage = "We're sorry, but we couldn't complete your request. Please try again.";
     setIsLoading(true);
-    form_datas.forEach((data) => formData.append(data.title, `${data.value}`));
-    fetch(`${process.env.NEXT_PUBLIC_YOUR_GOOGLE_SCRIPT_URL}`, {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => {
-        setIsLoading(false);
-        toast.success("You've successfully subscribe to our newsletter");
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err);
-        toast.error(
-          `We're sorry, but we couldnt complete your request. Please refresh page and try again.`
-        );
+    try {
+      const response = await fetch('/api/post-sheet-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, country, newsletter }),
       });
+  
+      if (!response.ok) {
+        toast.error(errorMessage);
+      } else {
+        const data = await response.json();
+        toast.success("You've successfully subscribed to our newsletter");
+        console.log(data);
+      }
+    } catch (error) {
+      console.log('Error:', error);
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   }
+
   return (
     <section className="bg-[#F1F3F4] py-[5rem] md:px-[10rem] px-4">
       <MaxScreenWrapper>
@@ -94,43 +88,21 @@ export const Subscription: React.FC = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mb-4">
-              <FormField
+              <FormInputField
+                inputStyle={inputStyle}
                 control={form.control}
                 name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your email"
-                        className={inputStyle}
-                        type="email"
-                        required
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                inputCategory="input"
+                inputType="email"
+                placeholder="Enter your email"
               />
-              <FormField
+              <FormInputField
+                inputStyle={inputStyle}
                 control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <SelectTrigger className={inputStyle}>
-                        <SelectValue placeholder="select type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value={'nigeria'}>Nigeria</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                name={'country'}
+                inputCategory="select"
+                placeholder="Select Type"
+                selectList={['nigeria']}
               />
             </div>
             <FormField
@@ -164,7 +136,6 @@ export const Subscription: React.FC = () => {
                 </FormItem>
               )}
             />
-
             <Text
               style={`text-[16px] font-[400] text-[grey] text-[#696984] leading-5`}
             >
@@ -180,9 +151,10 @@ export const Subscription: React.FC = () => {
               </span>
             </Text>
 
-            <div 
-              style={{marginTop:"3rem"}}
-              className="flex justify-end items-end bg-darkblue text-white rounded-md mt-12 w-fit ms-auto">
+            <div
+              style={{ marginTop: '3rem' }}
+              className="flex justify-end items-end bg-darkblue text-white rounded-md mt-12 w-fit ms-auto"
+            >
               {isLoading ? (
                 <Button
                   disabled

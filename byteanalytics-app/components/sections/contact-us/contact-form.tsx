@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { FormInputField } from '@/components/ui/custom-ui/form-field';
 
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -85,7 +86,6 @@ export const ContactForm = () => {
       const successMessage =
         'Thank you for reaching out! Your message has been successfully sumbitted.';
       const ErrorMessage = `We're sorry, but your message could'nt be sent. Please refresh page and try again.`;
-
       try {
         setIsLoading(true);
         await axios.post(apiUrl, data);
@@ -104,147 +104,69 @@ export const ContactForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className={formGridStyle}>
-          <FormField
+          <FormInputField
             control={form.control}
             name="firstname"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>First Name</FormLabel>
-                <FormControl>
-                  <Input
-                    required
-                    className={inputStyle}
-                    type="text"
-                    placeholder="John"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            inputStyle={inputStyle}
+            label={'First Name'}
+            inputCategory="input"
+            inputType="text"
+            placeholder="John"
           />
-          <FormField
+          <FormInputField
+            inputStyle={inputStyle}
             control={form.control}
             name="lastname"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Last Name</FormLabel>
-                <FormControl>
-                  <Input
-                    required
-                    className={inputStyle}
-                    type="text"
-                    placeholder="Doe"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={'Last Name'}
+            inputCategory="input"
+            inputType="text"
+            placeholder="Doe"
           />
-          <FormField
+          <FormInputField
+            inputStyle={inputStyle}
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    required
-                    className={inputStyle}
-                    type="email"
-                    placeholder="sample@gmail.com"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={'Email'}
+            inputCategory="input"
+            inputType="email"
+            placeholder="johndoe@gmail.com"
           />
-          <FormField
+          <FormInputField
+            inputStyle={inputStyle}
             control={form.control}
             name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone Number</FormLabel>
-                <FormControl>
-                  <Input
-                    required
-                    className={inputStyle}
-                    type="tel"
-                    placeholder="+2349089786756"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={'Phone Number'}
+            inputCategory="input"
+            inputType="tel"
+            placeholder="+2349089786756"
           />
-          <FormField
+          <FormInputField
+            inputStyle={inputStyle}
             control={form.control}
             name="organization"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Organization</FormLabel>
-                <FormControl>
-                  <Input
-                    required
-                    className={inputStyle}
-                    type="text"
-                    placeholder="John's Company"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={'Organization'}
+            inputCategory="input"
+            inputType="text"
+            placeholder="John's Company"
           />
-          <div className="relative">
-            <FormField
-              control={form.control}
-              name="inquirytype"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Enquiry Type</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className={inputStyle}>
-                      <SelectValue placeholder="Please Select..." />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white p-2">
-                      {enquiryTypeList.map((content, index) => (
-                        <SelectItem value={content} key={index}>
-                          {content}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormInputField
+            inputStyle={inputStyle}
+            control={form.control}
+            name={'inquirytype'}
+            label={'Enquiry Type'}
+            inputCategory="select"
+            placeholder="Please Select..."
+            selectList={enquiryTypeList}
+          />
         </div>
-        <FormField
+        <FormInputField
           control={form.control}
           name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Message</FormLabel>
-              <FormControl>
-                <Input
-                  required
-                  className={messageInputStyle}
-                  type="text"
-                  placeholder="write your message"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label={'Message'}
+          inputCategory="input"
+          inputType="text"
+          inputStyle={messageInputStyle}
+          placeholder="Write your message"
         />
         <div
           className="flex justify-start items-end bg-darkblue text-white rounded-md mt-8"
@@ -256,7 +178,6 @@ export const ContactForm = () => {
               className="text-white bg-lemongreen px-[52.51px] py-[16.41px] text-[17.5px] h-[46px]"
             >
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin text-white" />
-              Sending...
             </Button>
           ) : (
             <Button

@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Logo } from '../global/logo';
 import { SearchNormal1, Notification } from 'iconsax-react';
 import { IconInput } from '../ui/custom-ui/icon-input';
@@ -10,12 +10,18 @@ import { usePathname } from 'next/navigation';
 import { NavRoutes } from '@/lib/constants/nav';
 import Link from 'next/link';
 import { DmSans } from '@/app/layout';
+import { WebsiteQuery } from '../global/web-query';
 export const TopNav: React.FC = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const currentpath = usePathname();
-  const [showMobileSearchInput, setShowMobileSearchIput] = useState<boolean>(false);
+  // const handleSearchQuery =(e:any)=>{
+  //   trainings
+  // }
   return (
-    <header className="shadow-md fixed top-0 left-0 right-0 z-[1000] bg-white" id="top">
+    <header
+      className="shadow-md fixed top-0 left-0 right-0 z-[1000] bg-white"
+      id="top"
+    >
       <nav className="lg:block hidden w-full px-[2rem] bg-black">
         <ul
           className={`flex lg:flex-row flex-col gap-4 m-auto max-w-[1440px] ${DmSans.className}`}
@@ -40,11 +46,9 @@ export const TopNav: React.FC = () => {
         <div className="lg:w-fit w-full flex items-center justify-between">
           <Logo />
           <div className="flex gap-4 lg:hidden items-center">
-            <SearchNormal1
-              size="17"
-              color="#1D2026"
-              onClick={() => setShowMobileSearchIput(true)}
-            />
+            <WebsiteQuery>
+              <SearchNormal1 size="17" color="#1D2026" className="cursor-pointer"/>
+            </WebsiteQuery>
             <Hamburger
               onToggle={() =>
                 navRef.current !== null &&
@@ -60,25 +64,15 @@ export const TopNav: React.FC = () => {
           ref={navRef}
           className=" z-[1000] bg-white nav justify-between flex-grow lg:flex-row flex-col  lg:gap-[6rem] items-center justify-center md:w-auto w-full"
         >
-          {/**Desktop Seach Input */}
-          <IconInput
-            icon={<SearchNormal1 size="17" color="#1D2026" />}
-            placeHolder="What do you want to learn..."
-            handleChange={() => console.log('hello')}
-            contStyle="xl:w-[527px] lg:w-[327px] lg:block hidden rounded w-full text-sm font-400 border"
-            type="text"
-          />
-          {/**Mobile Seach Input */}
-          {showMobileSearchInput && (
+          <WebsiteQuery>
             <IconInput
               icon={<SearchNormal1 size="17" color="#1D2026" />}
               placeHolder="What do you want to learn..."
               handleChange={() => console.log('hello')}
-              contStyle="lg:hidden block lg:w-[327px] rounded w-full text-sm font-400 border"
+              contStyle="xl:w-[527px] lg:w-[327px] lg:block hidden rounded w-full text-sm font-400 border"
               type="text"
             />
-          )}
-
+          </WebsiteQuery>
           <div className="lg:pe-[4rem] pe-0 gap-4 flex items-center lg:flex-row flex-col md:w-auto w-full">
             <div className="lg:flex gap-4 hidden items-center">
               <Notification
@@ -113,10 +107,10 @@ export const TopNav: React.FC = () => {
               </ul>
             </nav>
             <div className="flex gap-2 md:flex-row flex-col  md:w-auto w-full">
-              <Button className="bg-lightpurple text-black rounded px-[24px] py-4 text-[16px] font-[600] md:w-auto w-full">
+              <Button disabled className="bg-lightpurple text-black rounded px-[24px] py-4 text-[16px] font-[600] md:w-auto w-full">
                 Create Account
               </Button>
-              <Button className="bg-black text-white px-[24px] py-4 text-[16px] font-[600] rounded md:w-auto w-full">
+              <Button disabled className="bg-black text-white px-[24px] py-4 text-[16px] font-[600] rounded md:w-auto w-full">
                 Sign in
               </Button>
             </div>

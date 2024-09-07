@@ -17,8 +17,8 @@ export const Insights: React.FC = () => {
       <MaxScreenWrapper style="relative grid lg:grid-cols-2 grid-cols-1 lg:gap-[3.5rem] gap-4 py-[6rem] lg:px-[8rem] px-4">
         <CustomImage
           src={blubg}
-          style={'absolute bottom-0 md:left-[137px] left-4 md:w-[709px] w-[90%] h-[104px]'}
-          imgStyle="object-contain"
+          style={'absolute bottom-0 md:left-[137px] left-4 md:w-[709px] w-[90%] md:h-[204px] h-[104px]'}
+          imgStyle="md:object-cover object-contain"
         />
         <div>
           <div

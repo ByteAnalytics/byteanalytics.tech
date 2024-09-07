@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { ArrowUp2 } from 'iconsax-react';
-import { useWindowHeight } from '@/lib/hooks/dimensionHeight';
+import { useWindowHeight } from '@/lib/hooks/dimension-height';
 export const GotoTop = () => {
   const scrollY = useWindowHeight();
 

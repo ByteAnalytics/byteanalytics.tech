@@ -7,6 +7,7 @@ import img2 from '../../../public/home-hero/Group 21.svg';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { MaxScreenWrapper } from '@/components/global/max-screen';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,6 +20,34 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 export const HomeHero: React.FC = () => {
   const swiperRef = React.useRef<any>(null);
+  const router = useRouter();
+  const TrainingBox: React.FC = () => (
+    <div className={`flex flex-col`}>
+      <Text
+        as="h3"
+        style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
+      >
+        Join a class of students and get a data
+      </Text>
+      <div className="xl:mb-[4rem] md:mb-[4rem] mb-12">
+        <Text
+          as="h3"
+          style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
+        >
+          analytics certificate,
+          <span>
+            <Link
+              href="/training/data-analytics"
+              className="text-sm text-[400] mx-1 text-lemongreen border-lemongreen border-b-2 py-1"
+            >
+              Take a course
+            </Link>
+          </span>
+          <span>now!</span>
+        </Text>
+      </div>
+    </div>
+  );
   return (
     <section className="bg-[#E6F0FC]">
       <MaxScreenWrapper style="relative flex hero-slide">
@@ -39,8 +68,8 @@ export const HomeHero: React.FC = () => {
           >
             <SwiperSlide>
               <div className="xl:pe-[3rem] text-center xl:text-start flex gap-2 flex-col text-lemongreen md:text-[56px] text-[50px] font-[900] mb-4 relative md:leading-[57px] leading-[51px]">
-                <Text as="h1" style="flex flex-col xl:block text-black">
-                  Explore <span>Modern Data</span>
+                <Text as="h1" style="text-black">
+                  Explore Modern Data
                 </Text>
                 <Text as="h1" style="text-black">
                   Analytics{' '}
@@ -54,138 +83,74 @@ export const HomeHero: React.FC = () => {
                 Our training programmes are structured comprehensively to ensure
                 you become an expert certified by global professional bodies.
               </Text>
-              <Button className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded">
+              <Button
+                onClick={() => router.push('/training')}
+                className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded"
+              >
                 Get Started
               </Button>
               <CustomImage
                 src={img2}
                 style={'w-[182px] h-[44px] my-4 xl:mx-0 mx-auto'}
               />
-              <div className={`flex flex-col`}>
-                <Text
-                  as="h3"
-                  style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                >
-                  Join a class of students and get a data
+              <TrainingBox />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="xl:pe-[3rem] text-center xl:text-start flex gap-2 flex-col text-lemongreen md:text-[50px] text-[50px] font-[900] mb-4 relative md:leading-[57px] leading-[51px]">
+                <Text as="h1" style="flex flex-col xl:block text-black">
+                  Take a course on Data
                 </Text>
-                <div className="xl:mb-[4rem] md:mb-[4rem] mb-12">
-                  <Text
-                    as="h3"
-                    style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                  >
-                    analytics certificate,
-                    <span>
-                      <Link
-                        href="/"
-                        className="text-sm text-[400] mx-1 text-lemongreen border-lemongreen border-b-2 py-1"
-                      >
-                        Take a course
-                      </Link>
-                    </span>
-                    <span>now!</span>
-                  </Text>
-                </div>
+                <Text as="h1" style="text-black">
+                  Engineering & Design
+                </Text>
               </div>
+              <Text
+                as="h2"
+                style={` text-center xl:text-start md:text-[18px] text-[16px] mb-4 text-[#8C8C8C] xl:mx-0 mx-auto md:w-[70%] w-full leading-[25px]`}
+              >
+                Understand the engineering behind Data warehousing, Data
+                migration, Data governance, Master data management, Data
+                modernization.
+              </Text>
+              <Button
+                onClick={() => router.push('/training/data-engineering')}
+                className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded"
+              >
+                Get Started
+              </Button>
+              <CustomImage
+                src={img2}
+                style={'w-[182px] h-[44px] my-4 xl:mx-0 mx-auto'}
+              />
+              <TrainingBox />
             </SwiperSlide>
             <SwiperSlide>
               <div className="xl:pe-[3rem] text-center xl:text-start flex gap-2 flex-col text-lemongreen md:text-[56px] text-[50px] font-[900] mb-4 relative md:leading-[57px] leading-[51px]">
                 <Text as="h1" style="flex flex-col xl:block text-black">
-                  Explore <span>Modern Data</span>
+                  Understanding Data
                 </Text>
                 <Text as="h1" style="text-black">
-                  Analytics{' '}
-                  <span className="ms-[-0.5rem] text-lemongreen">.</span>
+                  Science & AI
                 </Text>
               </div>
               <Text
                 as="h2"
                 style={` text-center xl:text-start md:text-[18px] text-[16px] mb-4 text-[#8C8C8C] xl:mx-0 mx-auto md:w-[70%] w-full leading-[25px]`}
               >
-                Our training programmes are structured comprehensively to ensure
-                you become an expert certified by global professional bodies.
+                Sentiment Analysis, Customer segmentation analysis, Anomaly
+                detection, Churn Analysis, Risk management tool.
               </Text>
-              <Button className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded">
-                Get Started
-              </Button>
-              <CustomImage
-                src={img2}
-                style={'w-[182px] h-[44px] my-4 xl:mx-0 mx-auto'}
-              />
-              <div className={`flex flex-col`}>
-                <Text
-                  as="h3"
-                  style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                >
-                  Join a class of students and get a data
-                </Text>
-                <div className="xl:mb-[4rem] md:mb-[4rem] mb-12">
-                  <Text
-                    as="h3"
-                    style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                  >
-                    analytics certificate,
-                    <span>
-                      <Link
-                        href="/"
-                        className="text-sm text-[400] mx-1 text-lemongreen border-lemongreen border-b-2 py-1"
-                      >
-                        Take a course
-                      </Link>
-                    </span>
-                    <span>now!</span>
-                  </Text>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="xl:pe-[3rem] text-center xl:text-start flex gap-2 flex-col text-lemongreen md:text-[56px] text-[50px] font-[900] mb-4 relative md:leading-[57px] leading-[51px]">
-                <Text as="h1" style="flex flex-col xl:block text-black">
-                  Explore <span>Modern Data</span>
-                </Text>
-                <Text as="h1" style="text-black">
-                  Analytics{' '}
-                  <span className="ms-[-0.5rem] text-lemongreen">.</span>
-                </Text>
-              </div>
-              <Text
-                as="h2"
-                style={` text-center xl:text-start md:text-[18px] text-[16px] mb-4 text-[#8C8C8C] xl:mx-0 mx-auto md:w-[70%] w-full leading-[25px]`}
+              <Button
+                onClick={() => router.push('/training/data-science')}
+                className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded"
               >
-                Our training programmes are structured comprehensively to ensure
-                you become an expert certified by global professional bodies.
-              </Text>
-              <Button className="xl:mb-0 mb-12 flex justify-center mx-auto xl:mx-0 xl:items-start items-center gap-[10px] px-[40xp] py-[20px] h-[58px] md:w-[60%] bg-lemongreen text-white text-center md:text-[18px] text-[16px] w-full font-semibold rounded">
                 Get Started
               </Button>
               <CustomImage
                 src={img2}
                 style={'w-[182px] h-[44px] my-4 xl:mx-0 mx-auto'}
               />
-              <div className={`flex flex-col`}>
-                <Text
-                  as="h3"
-                  style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                >
-                  Join a class of students and get a data
-                </Text>
-                <div className="xl:mb-[4rem] md:mb-[4rem] mb-12">
-                  <Text
-                    as="h3"
-                    style="text-center xl:text-start md:text-[18px] text-[16px] text-[400] text-[grey]"
-                  >
-                    analytics certificate,
-                    <span>
-                      <Link
-                        href="/"
-                        className="text-sm text-[400] mx-1 text-lemongreen border-lemongreen border-b-2 py-1"
-                      >
-                        Take a course
-                      </Link>
-                    </span>
-                    <span>now!</span>
-                  </Text>
-                </div>
-              </div>
+              <TrainingBox />
             </SwiperSlide>
           </Swiper>
         </div>

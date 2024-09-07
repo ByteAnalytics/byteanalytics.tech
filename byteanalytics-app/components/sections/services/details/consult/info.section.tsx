@@ -4,7 +4,6 @@ import { MaxScreenWrapper } from '@/components/global/max-screen';
 import { CustomImage } from '@/components/global/image';
 import img from '../../../../../public/service/Frame 1561.svg';
 import { Cohort } from '../../join-cohort.section';
-import { Button } from '@/components/ui/button';
 import { MakeEnquiryBtn } from '../make-enquiry-btn';
 
 export const ConsultInfo: React.FC = () => {

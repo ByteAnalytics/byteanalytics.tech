@@ -25,20 +25,20 @@ export const Footer = () => {
             <li className="text-[16px] font-[400]">Services</li>
             {[
               {
-                title: 'Email Marketing',
-                route: '/',
+                title: 'Cloud Solutions and Services',
+                route: '/services',
               },
               {
-                title: 'Campaigns',
-                route: '/',
+                title: 'Consultation',
+                route: '/services',
               },
               {
-                title: 'Branding',
-                route: '/',
+                title: 'Business process automation',
+                route: '/services',
               },
               {
-                title: 'Offline',
-                route: '/',
+                title: 'Software Engineering',
+                route: '/services',
               },
             ].map((links, index) => (
               <li key={index} className="text-[15px] font-[400]">
@@ -51,19 +51,19 @@ export const Footer = () => {
             {[
               {
                 title: 'Our Story',
-                route: '/',
+                route: '/about-us',
               },
               {
                 title: 'Benefits',
-                route: '/',
+                route: '/about-us',
               },
               {
                 title: 'Team',
-                route: '/',
+                route: '/about-us',
               },
               {
                 title: 'Careers',
-                route: '/',
+                route: '/about-us',
               },
             ].map((links, index) => (
               <li key={index} className="text-[15px] font-[400]">

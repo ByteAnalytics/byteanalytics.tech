@@ -15,15 +15,15 @@ export interface ICustomImagePropType {
 }
 
 export interface IMaxScreenWrapperPropType {
-  children:React.ReactNode;
-  style?:string
+  children: React.ReactNode;
+  style?: string;
 }
 
-export interface IBreadCombLayoutPropType{
-  routes:{
-    title:string, 
-    linkto ?:string
-  }[]
+export interface IBreadCombLayoutPropType {
+  routes: {
+    title: string;
+    linkto?: string;
+  }[];
 }
 
 export interface IIconInputPropType {
@@ -41,3 +41,33 @@ export interface IIconInputPropType {
 export interface ILogoPropType {
   style?: string;
 }
+
+export interface IFormField {
+  control: any;
+  name: string;
+  labelStyle?: string;
+  label?: React.ReactNode | string;
+  inputCategory: 'input' | 'select' | 'textArea';
+  inputStyle?: string;
+  inputType?: string;
+  placeholder: string;
+  readOnly?: boolean;
+  required?: boolean;
+  selectList?: string[];
+}
+
+export interface ICommandItemBox {
+  route: string;
+  title: string;
+  desc: string;
+}
+
+export interface IWebsiteQueryProp {
+  children: React.ReactNode
+}
+
+export type AppContextType = {
+  isMounted: boolean;
+  setIsMounted: React.Dispatch<React.SetStateAction<boolean>>;
+  modalCloseTrigger: React.RefObject<HTMLButtonElement> | null;
+};
